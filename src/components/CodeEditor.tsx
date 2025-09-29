@@ -52,29 +52,29 @@ export default function CodeEditor({ fileName, fileExtension, initialContent = '
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-card">
-        <div className="flex items-center gap-2">
-          <Icon name="FileCode" size={16} className="text-muted-foreground" />
-          <span className="text-sm font-medium">{fileName}</span>
+      <div className="flex items-center justify-between px-3 md:px-4 py-2.5 md:py-2 border-b border-border bg-card">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
+          <Icon name="FileCode" size={16} className="text-muted-foreground flex-shrink-0" />
+          <span className="text-sm font-medium truncate">{fileName}</span>
         </div>
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+        <div className="flex items-center gap-2 md:gap-3 text-xs text-muted-foreground flex-shrink-0">
           {lastSaved && (
             <div className="flex items-center gap-1">
               <Icon name="Check" size={14} className="text-primary" />
-              <span>Сохранено {formatTime(lastSaved)}</span>
+              <span className="hidden sm:inline">Сохранено {formatTime(lastSaved)}</span>
             </div>
           )}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 px-2 py-1 bg-muted rounded">
             <Icon name="Type" size={14} />
-            <span>{fileExtension.toUpperCase()}</span>
+            <span className="font-medium">{fileExtension.toUpperCase()}</span>
           </div>
         </div>
       </div>
 
       <div className="flex-1 flex overflow-hidden">
-        <div className="w-12 bg-muted flex flex-col items-end py-4 px-2 text-xs text-muted-foreground font-mono select-none">
+        <div className="w-10 md:w-12 bg-muted flex flex-col items-end py-4 px-1.5 md:px-2 text-xs text-muted-foreground font-mono select-none touch-none">
           {Array.from({ length: lineCount }, (_, i) => (
-            <div key={i + 1} className="leading-6">
+            <div key={i + 1} className="leading-6 md:leading-6">
               {i + 1}
             </div>
           ))}
@@ -85,9 +85,12 @@ export default function CodeEditor({ fileName, fileExtension, initialContent = '
             ref={textareaRef}
             value={content}
             onChange={handleContentChange}
-            className="absolute inset-0 w-full h-full font-mono text-sm resize-none border-0 focus-visible:ring-0 leading-6 p-4 bg-[hsl(var(--editor-bg))] text-[hsl(var(--editor-text))]"
+            className="absolute inset-0 w-full h-full font-mono text-sm md:text-base resize-none border-0 focus-visible:ring-0 leading-6 p-3 md:p-4 bg-[hsl(var(--editor-bg))] text-[hsl(var(--editor-text))] touch-manipulation"
             placeholder="Начните писать код..."
             spellCheck={false}
+            autoCapitalize="none"
+            autoCorrect="off"
+            autoComplete="off"
           />
         </div>
       </div>

@@ -19,19 +19,19 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
 
   return (
     <div className="h-full flex flex-col bg-card border-l border-border">
-      <div className="flex items-center justify-between p-4 border-b border-border">
-        <h2 className="text-lg font-medium">Настройки</h2>
-        <Button variant="ghost" size="icon" onClick={onClose}>
-          <Icon name="X" size={20} />
+      <div className="flex items-center justify-between p-4 md:p-4 border-b border-border">
+        <h2 className="text-base md:text-lg font-medium">Настройки</h2>
+        <Button variant="ghost" size="icon" onClick={onClose} className="h-10 w-10 md:h-9 md:w-9">
+          <Icon name="X" size={22} />
         </Button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-6">
-        <div className="space-y-4">
-          <h3 className="text-sm font-medium text-muted-foreground">Редактор</h3>
+      <div className="flex-1 overflow-y-auto p-4 md:p-4 space-y-6">
+        <div className="space-y-5 md:space-y-4">
+          <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Редактор</h3>
           
-          <div className="space-y-2">
-            <Label htmlFor="fontSize" className="text-sm">
+          <div className="space-y-3">
+            <Label htmlFor="fontSize" className="text-sm font-medium">
               Размер шрифта: {fontSize[0]}px
             </Label>
             <Slider
@@ -41,54 +41,57 @@ export default function SettingsPanel({ onClose }: SettingsPanelProps) {
               step={1}
               value={fontSize}
               onValueChange={setFontSize}
-              className="w-full"
+              className="w-full touch-manipulation"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="tabSize" className="text-sm">Размер табуляции</Label>
+          <div className="space-y-3">
+            <Label htmlFor="tabSize" className="text-sm font-medium">Размер табуляции</Label>
             <Select value={tabSize} onValueChange={setTabSize}>
-              <SelectTrigger id="tabSize">
+              <SelectTrigger id="tabSize" className="h-11 md:h-10">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="2">2 пробела</SelectItem>
-                <SelectItem value="4">4 пробела</SelectItem>
-                <SelectItem value="8">8 пробелов</SelectItem>
+                <SelectItem value="2" className="py-3 md:py-2">2 пробела</SelectItem>
+                <SelectItem value="4" className="py-3 md:py-2">4 пробела</SelectItem>
+                <SelectItem value="8" className="py-3 md:py-2">8 пробелов</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <div className="flex items-center justify-between">
-            <Label htmlFor="wordWrap" className="text-sm">Перенос строк</Label>
+          <div className="flex items-center justify-between py-2 touch-manipulation">
+            <Label htmlFor="wordWrap" className="text-sm font-medium">Перенос строк</Label>
             <Switch
               id="wordWrap"
               checked={wordWrap}
               onCheckedChange={setWordWrap}
+              className="touch-manipulation"
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <Label htmlFor="lineNumbers" className="text-sm">Номера строк</Label>
+          <div className="flex items-center justify-between py-2 touch-manipulation">
+            <Label htmlFor="lineNumbers" className="text-sm font-medium">Номера строк</Label>
             <Switch
               id="lineNumbers"
               checked={lineNumbers}
               onCheckedChange={setLineNumbers}
+              className="touch-manipulation"
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <Label htmlFor="autoSave" className="text-sm">Автосохранение</Label>
+          <div className="flex items-center justify-between py-2 touch-manipulation">
+            <Label htmlFor="autoSave" className="text-sm font-medium">Автосохранение</Label>
             <Switch
               id="autoSave"
               checked={autoSave}
               onCheckedChange={setAutoSave}
+              className="touch-manipulation"
             />
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="text-sm font-medium text-muted-foreground">О приложении</h3>
+        <div className="space-y-4 pt-2">
+          <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">О приложении</h3>
           <div className="space-y-2 text-sm text-muted-foreground">
             <p>Текстовый редактор v1.0.0</p>
             <p>Встроенный файловый менеджер</p>

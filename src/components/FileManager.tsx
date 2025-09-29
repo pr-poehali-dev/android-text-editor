@@ -93,22 +93,22 @@ const FileTreeNode = ({
     <div>
       <div
         onClick={handleClick}
-        style={{ paddingLeft: `${level * 16 + 8}px` }}
-        className={`flex items-center gap-2 py-1.5 px-2 cursor-pointer hover:bg-sidebar-accent transition-colors ${
+        style={{ paddingLeft: `${level * 16 + 12}px` }}
+        className={`flex items-center gap-2.5 py-3 md:py-2 px-3 md:px-2 cursor-pointer active:bg-sidebar-accent/80 hover:bg-sidebar-accent transition-colors touch-manipulation ${
           selectedId === node.id ? 'bg-sidebar-accent' : ''
         }`}
       >
         {node.type === 'folder' ? (
-          <Icon name={isOpen ? 'ChevronDown' : 'ChevronRight'} size={16} />
+          <Icon name={isOpen ? 'ChevronDown' : 'ChevronRight'} size={18} className="flex-shrink-0" />
         ) : (
-          <span className="w-4" />
+          <span className="w-[18px]" />
         )}
         <Icon
           name={node.type === 'folder' ? (isOpen ? 'FolderOpen' : 'Folder') : getFileIcon(node.extension)}
-          size={16}
-          className="text-sidebar-foreground"
+          size={18}
+          className="text-sidebar-foreground flex-shrink-0"
         />
-        <span className="text-sm text-sidebar-foreground">{node.name}</span>
+        <span className="text-sm md:text-sm text-sidebar-foreground truncate">{node.name}</span>
       </div>
       {node.type === 'folder' && isOpen && node.children && (
         <div>
@@ -130,11 +130,11 @@ const FileTreeNode = ({
 export default function FileManager({ onFileSelect, selectedFileId }: FileManagerProps) {
   return (
     <div className="h-full flex flex-col bg-sidebar">
-      <div className="p-4 border-b border-sidebar-border">
-        <h2 className="text-sm font-medium text-sidebar-foreground">Файлы</h2>
+      <div className="p-4 md:p-4 border-b border-sidebar-border">
+        <h2 className="text-base md:text-sm font-medium text-sidebar-foreground">Файлы</h2>
       </div>
       <ScrollArea className="flex-1">
-        <div className="py-2">
+        <div className="py-2 md:py-2">
           {mockFileSystem.map(node => (
             <FileTreeNode
               key={node.id}
